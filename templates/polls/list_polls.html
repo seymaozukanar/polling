@@ -1,0 +1,17 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href={% static "polls/main_style.css" %}>
+</head>
+
+
+<body>
+
+<h1>POLLS</h1>
+{% for poll in polls%}
+    <li>{{poll.title}}</li><br>
+    <li>{{poll.body}}</li><br>
+    <li>{{poll.is_public}}</li><br>
+{% endfor %}
+
+</body>

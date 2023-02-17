@@ -1,0 +1,23 @@
+body {
+    background-color: lightblue;
+}
+  
+h1 {
+    color: green;
+    margin-left: 20px;
+    font-style: bold;
+    text-align: center;
+}
+
+ul {
+    color: blanchedalmond;
+    text-align: center;
+}
+
+li {
+    color: green;
+}
+h3 {
+    text-decoration: dashed;
+    font-style: italic;
+}
