@@ -6,12 +6,18 @@
 
 
 <body>
-
-<h1>POLLS</h1>
-{% for poll in polls%}
-    <li>{{poll.title}}</li><br>
-    <li>{{poll.body}}</li><br>
-    <li>{{poll.is_public}}</li><br>
-{% endfor %}
-
+    <br><br>
+    <h1>POLLS</h1>
+    {% for poll in polls%}
+    <a href="{% url 'poll_detail' id=poll.id%}">
+    <div>
+        <span1>
+            {{poll.title}}
+        </span1><br>
+        <span2>
+            {{poll.body}}<br>
+            {{poll.is_public}}<br>
+        </span2>
+    </div></a><br>
+    {% endfor %}
 </body>
