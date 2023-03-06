@@ -9,24 +9,19 @@ from polling.polls.serializers import PollSerializer
 
 def list_polls(request):
 
-    # template = loader.get_template("polls/list_polls.html")
-
     if request.method == "GET":
 
         polls = Poll.objects.all()
         context = {"polls": polls}
 
-        # template = loader.get_template("polls/list_polls.html")
-        # pdf = render_to_pdf(template, context)
-
         return render(request, "polls/list_polls.html", context)
-        # return HttpResponse(pdf, 'application/pdf')
 
     elif request.method == "POST":
         data = JSONParser().parse(request)
         serializer = PollSerializer(data=data)
         if serializer.is_valid:
             serializer.save()
+
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
