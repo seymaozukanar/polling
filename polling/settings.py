@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'polling.polls',
     'polling.users',
-    'django_filters',
+    # 'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +138,5 @@ REST_FRAMEWORK = {
     ]
 }
 """
+
+FIXTURE_DIRS = 'polling/fixtures'
