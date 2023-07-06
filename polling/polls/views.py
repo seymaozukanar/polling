@@ -1,5 +1,6 @@
-from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework import filters
+from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from polling.pagination import SmallPagesPagination
 from polling.polls.models import Poll
@@ -23,3 +24,4 @@ class PollListView(ListAPIView):
 class VoteCreateView(CreateAPIView):
     serializer_class = VoteSerializer
     lookup_field = "id"
+    permission_classes = [IsAuthenticated]
