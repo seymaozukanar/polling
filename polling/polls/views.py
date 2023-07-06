@@ -2,6 +2,8 @@ from rest_framework import filters
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
+# from django_filters.rest_framework import DjangoFilterBackend TODO: figure out why this cannot be imported
+
 from polling.pagination import SmallPagesPagination
 from polling.polls.models import Poll
 from polling.polls.serializers import PollSerializer, VoteSerializer
@@ -19,6 +21,7 @@ class PollListView(ListAPIView):
     pagination_class = SmallPagesPagination
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ["created_at",]
+    # filterset_fields = ["category"]
 
 
 class PollDetailView(RetrieveAPIView):
