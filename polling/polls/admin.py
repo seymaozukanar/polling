@@ -1,8 +1,17 @@
 from django.contrib import admin
-
-# Register your models here.
+from polling.polls.models import Poll, Category
 
 
 class PollAdmin(admin.ModelAdmin):
     
-    pass
+    list_display = ["title", "is_public", "created_at"]
+    fields = ["title", "body", "is_public", "category"]
+
+
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = ["name"]
+
+
+admin.site.register(Poll, PollAdmin)
+admin.site.register(Category, CategoryAdmin)

@@ -1,4 +1,9 @@
 from django.db import models
+from polling.users.models import User
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=40)
 
 
 class Poll(models.Model):
@@ -8,6 +13,18 @@ class Poll(models.Model):
     is_public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
+    category = models.ManyToManyField(Category, blank=True)
 
     class Meta:
         ordering = ["-created_at"]
+
+
+class Vote(models.Model):
+    value = models.PositiveSmallIntegerField(choices=[(i, i) for i in [1, 2, 3, 4, 5]], default=1)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name="votes")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["poll", "user"], name="unique_vote")
+        ]

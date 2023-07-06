@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Poll
+from .models import Poll, Vote
 
 
 class PollSerializer(serializers.Serializer):
@@ -19,3 +19,10 @@ class PollSerializer(serializers.Serializer):
         instance.is_public = validated_data.get("is_public", instance.is_public)
         instance.save()
         return instance
+
+
+class VoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Vote
+        fields = "__all__"
