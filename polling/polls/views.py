@@ -1,5 +1,5 @@
 from rest_framework import filters
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from polling.pagination import SmallPagesPagination
@@ -19,6 +19,12 @@ class PollListView(ListAPIView):
     pagination_class = SmallPagesPagination
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ["created_at",]
+
+
+class PollDetailView(RetrieveAPIView):
+    queryset = Poll.objects.all()
+    serializer_class = PollSerializer
+    lookup_field = "id"
 
 
 class VoteCreateView(CreateAPIView):
