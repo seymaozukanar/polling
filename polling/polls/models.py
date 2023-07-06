@@ -1,13 +1,16 @@
 from django.db import models
+from django.db.models import Avg
 from polling.users.models import User
 
 
 class Category(models.Model):
     name = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.name
+
 
 class Poll(models.Model):
-
     title = models.CharField(max_length=40, unique=True)
     body = models.TextField(max_length=350, null=True, blank=True)
     is_public = models.BooleanField(default=True)
@@ -17,6 +20,13 @@ class Poll(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def average_votes(self):
+        return self.votes.aggregate(Avg("value"))["value__avg"]
 
 
 class Vote(models.Model):
