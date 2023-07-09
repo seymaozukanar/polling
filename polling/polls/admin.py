@@ -4,8 +4,8 @@ from polling.polls.models import Poll, Category
 
 class PollAdmin(admin.ModelAdmin):
     
-    list_display = ["title", "is_public", "created_at"]
-    fields = ["title", "body", "is_public", "category"]
+    list_display = ["title", "is_public", "created_at", "creator"]
+    fields = ["title", "body", "is_public", "category", "creator"]
 
 
 class CategoryAdmin(admin.ModelAdmin):

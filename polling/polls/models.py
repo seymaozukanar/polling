@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Avg
 from polling.users.models import User
+from polling.polls.utils import get_superuser
 
 
 class Category(models.Model):
@@ -17,6 +18,7 @@ class Poll(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True, blank=True, null=True)
     category = models.ManyToManyField(Category, blank=True)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=get_superuser)
 
     class Meta:
         ordering = ["-created_at"]

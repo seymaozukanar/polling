@@ -8,7 +8,7 @@ class PollSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Poll
-        fields = ["title", "body", "is_public", "created_at", "category", "average_votes"]
+        fields = ["title", "body", "is_public", "created_at", "average_votes", "creator"]
 
 
 class VoteSerializer(serializers.ModelSerializer):

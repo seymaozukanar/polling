@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from xhtml2pdf import pisa
+from polling.users.models import User
 
 
 def render_to_pdf(template, context):
@@ -17,3 +18,7 @@ def render_to_pdf(template, context):
     if pisa_status.err:
       return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
+
+
+def get_superuser():
+  return User.objects.filter(is_superuser=True, is_staff=True).first().id
