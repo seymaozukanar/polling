@@ -40,3 +40,6 @@ class Vote(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["poll", "user"], name="unique_vote")
         ]
+    
+    def __str__(self):
+        return f"{self.user.username} voted {self.value}"
